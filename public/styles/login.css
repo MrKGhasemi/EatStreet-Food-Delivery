@@ -1,0 +1,113 @@
+body main h2 {
+  margin: 3rem 0 1rem;
+  text-align: center;
+  color: #495057;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#section_form {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  margin: auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+  width: 50%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  color: #495057;
+  margin: 1rem 0 0.5rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+}
+
+input {
+  background-color: #f8f9fa;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #495057;
+  margin-bottom: 1rem;
+}
+
+button {
+  color: #ffffff;
+  background-color: #007bff;
+  margin: 1rem;
+  font-family: "Roboto", sans-serif;
+  border-radius: 8px;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+#signup_instead,
+#login_instead {
+  color: #007bff;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+#signup_instead:hover,
+#login_instead:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.input_error {
+  margin: 1rem auto;
+  background-color: #f8d7da;
+  border-radius: 12px;
+  border: 1px solid #f5c2c7;
+  width: 50%;
+  padding: 1rem;
+}
+
+#input_error_h2 {
+  margin: 0;
+  text-align: left;
+  color: #842029;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+
+#input_error_p {
+  margin: 0.5rem 0 0;
+  text-align: left;
+  color: #842029;
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ced4da;
+  margin: 1rem 0;
+}

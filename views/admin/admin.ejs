@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs',{title:'admin'})%>
+    <link rel="stylesheet" href="/styles/manage_products.css">
+    </head>
+
+    <body>
+        <%-include( '../includes/header.ejs' )%>
+            <main>
+                <%if ( products){%>
+                    <section class="product_show">
+                        <ul>
+                            <% for (product of products) { %>
+                                <li class="product_item">
+                                    <img src="/<%= product.image_path %>" id="image" alt="product">
+                                    <div class="product_content">
+                                        <p class="product_title">
+                                            <%= product.title %>
+                                        </p>
+                                        <div class="product_buttons">
+                                            <form action="/admin/manage_products/<%=product._id%>/edit" method="get">
+                                                <input type="hidden" value=<%=locals.csrfToken%> name="_csrf">
+                                                <button class="product_edit">View and Edit</button>
+                                            </form>
+                                            <form
+                                                action="/admin/manage_products/<%=product._id%>/delete/?_csrf=<%=csrfToken%>"
+                                                method="post">
+                                                <input type="hidden" value=<%=locals.csrfToken%> name="_csrf">
+                                                <button class="product_delete">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </section>
+                    <%}%>
+            </main>
+    </body>
+
+    </html>

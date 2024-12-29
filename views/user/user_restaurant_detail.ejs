@@ -1,0 +1,80 @@
+<%- include('../includes/head.ejs',{title:""})%>
+    <link rel="stylesheet" href="/styles/product_detail.css">
+    <script src="/scripts/add_to_card_button.js" defer></script>
+    </head>
+
+    <body>
+        <%-include( '../includes/header.ejs' , )%>
+            <main>
+                <ul id="restaurant_section">
+                    <li id="main_section">
+                        <img src="/<%= restaurant.image_path %>" alt="product_image" id="restaurant_img">
+                    </li>
+                    <li id="restaurant_detail">
+                      <h1><%=restaurant.name%></h1>
+                    <h4><%=restaurant.description%></h4>
+                    <h4>user Rating: <%=restaurant.average_rating%></h4>
+                    <p>Address: <%=restaurant.address%></p>
+                    <p>Number: <%=restaurant.phone%></p>
+                    <p>Active Hours: <%=restaurant.active_hours%></p>
+                    <p>Delivery Cost: <%=restaurant.delivery_cost%></p>
+                    <p>Estimated Delivery Time: <%=restaurant.delivery_time%></p>
+                    </li>
+
+                </ul>
+                
+                <ul id="description_section">
+                    <% for (food of restaurant.Menu){ %>
+                    <li class="list_each_product">
+                        <div id="food_img_div">
+                            <img src="/<%= food.image_path %>" alt="product_image" id="food_img">
+                        </div>
+
+                        <div>
+                                <strong id="food_name"><%= food.name %></strong>
+                                <p id="food_contains">Contains:<p id="food_description"><%= food.description %></p> </p>
+                                <p id="food_price">Price: $<%= food.price %></p>
+
+                        </div>
+                        <form action="/restaurants/<%=restaurant._id%>/<%=food._id%>/add_to_card/?_csrf=<%=csrfToken%>" method="post">
+                            <input type="hidden" value=<%=locals.csrfToken%> name="_csrf">
+                            <button id="add_to_card_button">Add to Cart</button>
+                        </form>
+                        <input type="hidden" name="food_id" id="food_id" value="<%=food._id%>">
+                    </li>
+                    <% } %>
+                </ul>
+                <h2>Reviews</h2>
+                <% if (restaurant.reviews && restaurant.reviews.length > 0) { %>
+                    <div id="reviews">
+                      <% for (const review of restaurant.reviews) { %>
+                        <div class="review">
+                          <p id="customer_name"><%= review.customer_name %></p>
+                          <p id="comment"><%= review.comment %></p>
+                          <p><strong>Order:</strong></p>
+                          <ul>
+                            <% for (const product of review.products) { %>
+                              <li><%= product.name %> </li>
+                            <% } %>
+                          </ul>
+                          <% const date = new Date(); 
+                            const formattedDate = date.toLocaleString('en-US', {
+                              year: '2-digit',
+                              month:'2-digit',
+                              day: '2-digit', 
+                              hour: '2-digit', 
+                              minute: '2-digit', 
+                            });
+                          %>
+                          <p><strong>Date:</strong> <%= formattedDate %></p>
+                        </div>
+                      <% } %>
+                    </div>
+                  <% } else { %>
+                    <p>No reviews yet.</p>
+                  <% } %>                  
+                <input type="hidden" name="restaurant_id" id="restaurant_id" value="<%=restaurant._id%>">
+            </main>
+    </body>
+
+    </html>

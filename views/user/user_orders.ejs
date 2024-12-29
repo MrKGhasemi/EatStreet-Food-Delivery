@@ -1,0 +1,153 @@
+<%- include('../includes/head.ejs', { title: 'Orders' }) %>
+<link rel="stylesheet" href="/styles/orders.css">
+<script src="/scripts/order.js" defer></script>
+</head>
+<body>
+    <%- include('../includes/header.ejs') %>
+    <main>
+        <% if (!locals.isAuth) { %>
+            <h1>You must login to access this page.</h1>
+            <a href="/login">Login</a>
+        <% } else { %>
+            <div class="tabs">
+                <button id="deliveredTab" class="tab active">Delivered Orders</button>
+                <button id="canceledTab" class="tab">Canceled Orders</button>
+                <button id="ongoingTab" class="tab">Ongoing Orders</button>
+            </div>
+
+            <section id="deliveredSection" class="orders-section">
+                <% if (!found) { %>
+                    <p>No delivered orders!</p>
+                <% } else { %>
+                    <ul>
+                        <% orders_finally_table.forEach(order => { %>
+                            <% if (order.State === 'delivered') { %>
+                                <li class="list_each_product">
+                                    <p>Order ID: <%= order._id %></p>
+                                    <time><%= order.toseeDate %></time>
+                                    <address>Deliver To: <%= order.customer_address.street %>, <%= order.customer_address.city %>, <%= order.customer_address.postal_code %></address>
+                                    <div id="products_image_price">
+                                        <% order.products.forEach(product => { %>
+                                            <div class="prices">
+                                                <img src="/<%= product.image_path %>" alt="product_image" id="product_image">
+                                                <p class="title"><%= product.ProductName %></p>
+                                                <div id="product_detail">
+                                                    <p>| Unit Price: $<%= product.price %> | Quantity: <%= product.quantity %> | Total: $<%= (product.price * product.quantity).toFixed(2) %></p>
+                                                </div>
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                    <p class="total">Total: $<%= order.total_price.toFixed(2) %></p>
+                                    <section id="product_state">
+                                        <div class="q_u_d">
+                                            <h3 class="state">
+                                                <%= order.State %>
+                                            </h3>
+                                        </div>
+                                    </section>
+                                    <section id="comment_section">
+                                        <% if (order.comment) { %>
+                                            <p id="comment_p"><strong>Comment: </strong><%= order.comment %></p>
+                                            <p id="rating_p">Rating: <span id="user_rating"><%= order.rating || "Not provided" %></span>/5</p>
+                                            <% } else { %>
+                                            <p id="give_a_comment_p">Give a Comment and Rate Your Order</p>
+                                            <form action="/orders/<%= order.restaurantID %>/<%= order._id %>/comment/?_csrf=<%= csrfToken %>" method="post">
+                                                <textarea name="comment_textarea" id="comment_textarea" placeholder="Write your comment"></textarea>
+                                                <label for="rating" id="rating_label">Rate Your Order:</label>
+                                                <div id="rating_stars">
+                                                    <% for (let i = 1; i <= 5; i++) { %>
+                                                        <input type="radio" name="rating" value="<%= i %>" id="star<%= i %>" required>
+                                                        <label for="star<%= i %>" class="star">&#9733;</label>
+                                                    <% } %>
+                                                </div>
+                                                <button id="send_comment_button">Send</button>
+                                            </form>
+                                        <% } %>
+                                    </section>
+                                </li>
+                            <% } %>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </section>
+
+            <section id="ongoingSection" class="orders-section hidden">
+                <% if (!found) { %>
+                    <p>No ongoing orders!</p>
+                <% } else { %>
+                    <ul>
+                        <% orders_finally_table.forEach(order => { %>
+                            <% if (order.State === 'pending'|| order.State === 'delivering') { %>
+                                <li class="list_each_product">
+                                    <p>Order ID: <%= order._id %></p>
+                                    <time><%= order.toseeDate %></time>
+                                    <address>Deliver To: <%= order.customer_address.street %>, <%= order.customer_address.city %>, <%= order.customer_address.postal_code %></address>
+                                    <p class="timer" data-end-time="<%= new Date(new Date(order.date).getTime() + order.estimated_delivery_time * 60 * 1000).getTime() %>">
+                                        Calculating...
+                                      </p>
+                                    <div id="products_image_price">
+                                        <% order.products.forEach(product => { %>
+                                            <div class="prices">
+                                                <img src="/<%= product.image_path %>" alt="product_image" id="product_image">
+                                                <p class="title"><%= product.ProductName %></p>
+                                                <div id="product_detail">
+                                                    <p>| Unit Price: $<%= product.price %> | Quantity: <%= product.quantity %> | Total: $<%= (product.price * product.quantity).toFixed(2) %></p>
+                                                </div>
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                    <p class="total">Total: $<%= order.total_price.toFixed(2) %></p>
+                                    <section id="product_state">
+                                        <div class="q_u_d">
+                                            <h3 class="state">
+                                                <%= order.State %>
+                                            </h3>
+                                        </div>
+                                    </section>
+                                </li>
+                            <% } %>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </section>
+
+            <section id="CanceledSection" class="orders-section hidden">
+                <% if (!found) { %>
+                    <p>No Canceled orders!</p>
+                <% } else { %>
+                    <ul>
+                        <% orders_finally_table.forEach(order => { %>
+                            <% if (order.State === 'canceled') { %>
+                                <li class="list_each_product">
+                                    <p>Order ID: <%= order._id %></p>
+                                    <time><%= order.toseeDate %></time>
+                                    <address>Deliver To: <%= order.customer_address.street %>, <%= order.customer_address.city %>, <%= order.customer_address.postal_code %></address>
+                                    <div id="products_image_price">
+                                        <% order.products.forEach(product => { %>
+                                            <div class="prices">
+                                                <img src="/<%= product.image_path %>" alt="product_image" id="product_image">
+                                                <p class="title"><%= product.ProductName %></p>
+                                                <div id="product_detail">
+                                                    <p>| Unit Price: $<%= product.price %> | Quantity: <%= product.quantity %> | Total: $<%= (product.price * product.quantity).toFixed(2) %></p>
+                                                </div>
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                    <p class="total">Total: $<%= order.total_price.toFixed(2) %></p>
+                                    <section id="product_state">
+                                        <div class="q_u_d">
+                                            <h3 class="state">
+                                                <%= order.State %>
+                                            </h3>
+                                        </div>
+                                    </section>
+                                </li>
+                            <% } %>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </section>
+        <% } %>
+    </main>
+</body>
+</html>

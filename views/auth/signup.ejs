@@ -1,0 +1,62 @@
+<%- include('../includes/head.ejs',{title:'signup'})%>
+    <link rel="stylesheet" href="/styles/login.css">
+    </head>
+
+
+    <body>
+        <%-include( '../includes/header.ejs' )%>
+            <main>
+                <h2>Create New Account</h2>
+                <%if(inputUserData.hasError){%>
+                    <div class="input_error">
+                        <h2 id="input_error_h2">INVALID INPUT</h2>
+                        <p id="input_error_p">
+                            <%=inputUserData.massage%>
+                        </p>
+                    </div>
+
+                    <%}%>
+                        <section>
+                            <form action="/signed_up" method="post">
+                                <input type="hidden" value="<%=locals.csrfToken%>" name="_csrf">
+
+                                <label for="email">Email</label>
+                                <input type="email" name="email" value="<%=inputUserData.email%>" required>
+
+                                <label for="confirm_email">Confirm Email</label>
+                                <input type="email" name="confirm_email" value="<%=inputUserData.confirm_email%>"
+                                    required>
+
+                                <label for="password">Password</label>
+                                <input type="password" name="password" minlength="10" maxlength="30"
+                                    placeholder="at least 10 characters" value="<%=inputUserData.password%>" required>
+
+                                <label for="tel">Phone</label>
+                                <input type="tel" name="tel" minlength="10" maxlength="10"
+                                        placeholder="at least 10 characters" value="<%=inputUserData.tel%>" required>
+
+                                <hr>
+
+                                <label for="full_name">Full Name</label>
+                                <input type="text" name="full_name" value="<%=inputUserData.full_name%>" required>
+
+                                <label for="street">Street</label>
+                                <input type="text" name="street" value="<%=inputUserData.street%>" required>
+
+                                <label for="postal_code">Postal Code</label>
+                                <input type="text" name="postal_code" value="<%=inputUserData.postal_code%>"
+                                    minlength="5" maxlength="5" required>
+
+                                <label for="city">City</label>
+                                <input type="text" name="city" value="<%=inputUserData.city%>" required>
+
+                                <button>Create Account</button>
+
+                                <a href="/login" id="login_instead">Login instead</a>
+
+                            </form>
+                        </section>
+            </main>
+    </body>
+
+    </html>

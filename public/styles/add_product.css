@@ -1,0 +1,67 @@
+body main h1 {
+  margin: 2rem 0rem 1rem 0rem;
+  text-align: center;
+  color: rgb(139, 139, 139);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#add_form {
+  margin: 0 auto;
+  background-color: rgb(20, 20, 20);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 4px rgb(48, 48, 48);
+  padding: 1rem;
+  width: 60%;
+}
+
+label {
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+input,
+textarea {
+  background-color: white;
+  border-radius: 0.25rem;
+  border-color: none;
+  width: 100%;
+  padding: 0.2rem 0rem;
+  margin: 0.5rem 0rem;
+}
+
+#image-preview {
+  height: 7rem;
+  width: 7rem;
+  display: none;
+  margin-right: 2rem;
+  object-fit: cover;
+}
+
+#image {
+  width: 90%;
+  padding: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#btn1,
+#btn2 {
+  color: white;
+  background-color: inherit;
+  font-family: sans-serif;
+  border-radius: 0.25rem;
+  border: 0.05rem rgb(198, 129, 0) solid;
+  box-shadow: none;
+  flex-basis: 44%;
+  margin: 0.5rem 2rem;
+  padding: 0.5rem;
+}
+
+#btn2 {
+  background-color: rgb(198, 129, 0);
+}

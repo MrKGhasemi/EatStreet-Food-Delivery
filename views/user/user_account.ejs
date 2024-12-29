@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs', { title: 'Orders' }) %>
+<link rel="stylesheet" href="/styles/account.css">
+<script src="/scripts/account.js" defer></script>
+</head>
+<body>
+    <%- include('../includes/header.ejs') %>
+    <main>
+        <%if(inputUserData.hasError){%>
+            <div class="input_error">
+                <h2 id="input_error_h2">INVALID INPUT</h2>
+                <p id="input_error_p">
+                    <%=inputUserData.massage%>
+                </p>
+            </div>
+
+            <%}%>
+
+        <% if (!locals.isAuth) { %>
+            <h1>You must login to access this page.</h1>
+            <a href="/login">Login</a>
+        <% } else { %>
+            <div class="tabs">
+                <button id="emailTab" class="tab active">Change Email</button>
+                <button id="passwordTab" class="tab">Change Password</button>
+                <button id="addressTab" class="tab">Change Address</button>
+
+            </div>
+
+            <section id="emailSection" class="orders-section">
+                <form action="/account/<%=user_data._id%>/email" method="post" class="forms">
+                    <input type="hidden" value="<%=locals.csrfToken%>" name="_csrf">
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="<%=user_data.email%>" required>
+
+                    <label for="confirm_email">Confirm Email</label>
+                    <input type="email" name="confirm_email" value="<%=user_data.confirm_email%>"
+                        required>
+
+                    <button class="btns">Submit</button>
+
+                </form>
+            </section>
+              
+
+            <section id="passwordSection" class="orders-section hidden">
+                <form action="/account/<%=user_data._id%>/password" method="post" class="forms">
+                    <input type="hidden" value="<%=locals.csrfToken%>" name="_csrf">
+
+                    <label for="password">Password</label>
+                    <input type="password" name="password" minlength="10" maxlength="30"
+                        placeholder="at least 10 characters" value="" required>
+
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" name="confirm_password" value=""
+                        required>
+
+                    <button class="btns">Submit</button>
+                </form>
+            </section>
+
+            <section id="addressSection" class="orders-section hidden">
+                <form action="/account/<%=user_data._id%>/address" method="post" class="forms">
+                    <input type="hidden" value="<%=locals.csrfToken%>" name="_csrf">
+
+                    <label for="street">Street</label>
+                    <input type="text" name="street" value="<%=user_data.address[0].street%>" required>
+
+                    <label for="postal_code">Postal Code</label>
+                    <input type="text" name="postal_code" value="<%=user_data.address[0].postal_code%>"
+                        minlength="5" maxlength="5" required>
+
+                    <label for="city">City</label>
+                    <input type="text" name="city" value="<%=user_data.address[0].city%>" required>
+
+                    <button class="btns">Submit</button>
+
+                </form>
+            </section>
+            <% } %>
+    </main>
+</body>
+</html>

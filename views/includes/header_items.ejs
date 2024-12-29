@@ -1,0 +1,56 @@
+<a class="nav-a" id="logo_admin" href="http://localhost:5000/">EatStreet Food Delivery</a>
+<nav>
+    <ul class="nav-list">
+        <% if (locals.isAdmin) { %>
+            <!-- <li><a class="nav-a" href="http://localhost:5000/admin/manage_restaurants">Manage Restaurants</a></li>
+            <li><a class="nav-a" href="http://localhost:5000/admin/manage_products">Manage products</a></li> -->
+            <li><a class="nav-a" href="http://localhost:5000/admin/manage_orders">Manage Orders</a></li>
+            <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                    <button id="logout">Logout</button>
+                </form>
+            </li>
+    </ul>
+</nav>
+<% } %>
+
+    <% if (!locals.isAdmin && locals.isAuth) { %>
+        <ul>
+            <li><a class="nav-a" href="http://localhost:5000/account">Account</a></li>
+            <li><a class="nav-a" href="http://localhost:5000/restaurants">Restaurants</a></li>
+            <li id="cards_span"><a class="nav-a" href="http://localhost:5000/card">Card</a>
+                <p id="number_of_user_added_to_cards">
+                    <%= locals.cards %>
+                </p>
+            </li>
+            <li id="orders_span"><a class="nav-a" href="http://localhost:5000/orders">Orders</a>
+                <% if (!locals.orders===0) { %>
+                    <p id="number_of_orders">
+                        <%= locals.orders %>
+                    </p>
+                    <% } %>
+            </li>
+            <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                    <button id="logout">Logout</button>
+                </form>
+            </li>
+        </ul>
+        </nav>
+        <% } %>
+
+            <% if (!locals.isAdmin && !locals.isAuth) { %>
+                <ul>
+                    <!-- <li><a class="nav-a" href="http://localhost:5000/restaurants">Restaurants</a></li>
+                    <li id="cards_span"><a class="nav-a" href="http://localhost:5000/card">Card</a>
+                        <p id="number_of_user_added_to_cards">
+                            <%= locals.cards %>
+                        </p>
+                    </li> -->
+                    <li><a class="nav-a" href="http://localhost:5000/signup">Signup</a></li>
+                    <li><a class="nav-a" href="http://localhost:5000/login" id="login">Login</a></li>
+                </ul>
+                </nav>
+                <% } %>

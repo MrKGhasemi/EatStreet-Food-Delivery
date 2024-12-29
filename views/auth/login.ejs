@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs',{title:'login'})%>
+    <link rel="stylesheet" href="/styles/login.css">
+    </head>
+
+    <body>
+        <%-include( '../includes/header.ejs' )%>
+            <main>
+                <h2>Login</h2>
+                <%if(inputUserData.hasError){%>
+                    <div class="input_error">
+                        <h2 id="input_error_h2">INVALID INPUT</h2>
+                        <p id="input_error_p">
+                            <%=inputUserData.massage%>
+                        </p>
+                    </div>
+
+                    <%}%>
+                        <section id="section_form">
+                            <form action="/logined" method="post">
+                                <input type="hidden" value="<%=locals.csrfToken%>" name="_csrf">
+
+                                <label for="email">Email</label>
+                                <input type="email" name="email" value="<%=inputUserData.email%>" required>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" value="<%=inputUserData.email%>" required>
+                                <button>Login</button>
+                                <a href="/signup" id="signup_instead">Create a new user</a>
+                            </form>
+                        </section>
+            </main>
+    </body>
+
+    </html>

@@ -1,0 +1,91 @@
+<%- include('../includes/head.ejs',{title:'card'})%> 
+<link rel="stylesheet" href="/styles/card.css">
+<script src="/scripts/add_to_card_page.js" defer></script>
+</head>
+
+<body>
+    <%- include('../includes/header.ejs') %>
+    <main>
+        <h1 id="All">All Your Cart</h1>
+        <% if (!found) { %>
+            <p id="no_prod_p">You selected no product!</p>
+        <% } else { %>
+            <div>
+                <% for (const prod of user_card_added_table.products) { %>
+                    <div id="res_title">                         
+                        <img src="/<%= prod.restaurant_detail.image_path %>" alt="restaurant_image">
+                        <h2 class="title">
+                        <%= prod.restaurant_detail.name %>
+                        </h2> 
+                    </div>             
+
+                    <% let restaurantTotal = 0; %> <!-- Initialize total for the restaurant -->
+                    <ul id="items_ul">
+                    <% for (const food of prod.foods) { %>
+                        <li class="list_each_product">
+                            <div class="info">
+                                <!-- Single line showing food name, unit price, quantity, and total price -->
+
+                                <input type="hidden" class="price_of_a_product" id="sum_of_a_product" name="sum_of_a_product" data-dd="<%= (food.product_detail.price * food.quantity) %>">
+                                <input type="hidden" class="price_of_a_product" id="price_of_a_product" name="price_of_a_product" value="<%= food.product_detail.price %>"> 
+
+                                <p id="food_detail">
+                                    <img src="/<%= food.product_detail.image_path %>" alt="food_image">
+                                    <strong><%= food.product_detail.name %></strong>
+                                    | Unit Price: $<%= food.product_detail.price %>
+                                    | Count: <%= food.quantity %>
+                                    | Total: $<%= (food.product_detail.price * food.quantity).toFixed(2) %>
+                                </p>
+                                <!-- <% restaurantTotal += food.product_detail.price * food.quantity; %> Add to restaurant total -->
+                            </div>
+
+                            <div class="q_u_d">
+                                <input type="number" value="<%= food.quantity %>" class="quantity_input"
+                                    id="quantity_input" min="1" max="100">    
+                                <form class="form"
+                                    action="/card/<%= prod.restaurant_id %>/<%= user_card_added_table.UserID %>/<%= food.product_detail._id %>"
+                                    method="post">
+                                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                                    <button class="update_quantity_button">Update</button>
+                                </form>
+                                  
+                                <form class="form"
+                                    action="/card/<%=prod.restaurant_id%>/<%=user_card_added_table.UserID%>/<%=food.product_detail._id%>/deleted"
+                                    method="post" id="deletess">
+                                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                                    <button class="delete_product_button">Delete</button>
+                                </form>
+                            </div>
+                        </li>                   
+                         <% } %>  
+                    </ul>
+                    
+                    <!-- Display the total for the restaurant -->
+
+
+                    <% if (locals.isAuth && user_card_added_table.products && user_card_added_table.products.length > 0) { %>
+                        <form class="form" action="/card/<%=prod.restaurant_id%>/<%=user_card_added_table.UserID%>/buy" method="post" id="buy_form">
+                            <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                            <li class="restaurant_total">
+                                <strong>Total:  </strong> $<%= (restaurantTotal + parseFloat(prod.restaurant_detail.delivery_cost)).toFixed(2) %>
+                            </li>
+                            <div id="buy_div">                           
+                                 <button class="btn" id="buy_btn">Order</button>
+                            </div>
+                        </form>    
+                    <% } %>
+                    <hr>
+                <% } %>
+            </div>
+            <div id="total_buy">
+                <h2 class="total"></h2>
+                <input type="hidden" id="total_hidden_input" name="total" value=""> 
+
+                <% if (!locals.isAuth) { %>
+                    <a href="/login" id="must_login">You must login to purchase.</a>
+                <% } %>
+            </div>
+        <% } %>
+    </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<header>
+  <div id="main_header"><%- include('./header_items.ejs') %></div>
+
+  <div id="mobile_header">
+    <div id="hamber_div">
+      <a class="nav-a" id="logo_admin" href="http://localhost:5000/"
+        >EatStreet Food Delivery</a
+      >
+      <button id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div id="hiddenSpace" class="hiddenSpace">
+      <div id="mobileNavContainer" class="hidden active">
+        <%- include('./header_items.ejs') %>
+      </div>
+    </div>
+  </div>
+
+  <hr id="hr" />
+</header>
+<script src="/scripts/ddd.js" defer></script>

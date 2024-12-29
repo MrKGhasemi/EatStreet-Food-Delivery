@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --color-gray-50: #e2e5e7;
+  --color-gray-100: #e9ecef;
+  --color-gray-300: #ced4da;
+  --color-gray-400: #adb5bd;
+  --color-gray-500: #6c757d;
+  --color-gray-600: #495057;
+  --color-gray-700: #343a40;
+
+  --color-primary-50: #fff3cd;
+  --color-primary-100: #ffeeba;
+  --color-primary-200: #ffd966;
+  --color-primary-400: #ffc107;
+  --color-primary-500: #ff9800;
+  --color-primary-700: #e65100;
+  --color-primary-gradient: linear-gradient(135deg, #ff9800, #e65100);
+  --color-primary-contrast: #ffffff;
+
+  --color-error-100: #f8d7da;
+  --color-error-500: #f05a4f;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --border-radius-small: 8px;
+  --border-radius-medium: 12px;
+
+  --shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-700);
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0 auto;
+  width: 75%;
+  line-height: 1.8;
+}
+
+/* Text and Informational Elements */
+h1,
+h2,
+h3,
+p,
+address,
+number {
+  margin: var(--space-4) 0;
+  color: var(--color-gray-700);
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-primary-700);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--color-gray-600);
+}
+
+p {
+  font-size: 1.125rem;
+  color: var(--color-gray-600);
+  font-weight: 400;
+  text-align: justify;
+  margin-bottom: var(--space-4);
+}
+
+address {
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--color-gray-500);
+  line-height: 1.5;
+}
+
+number {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  font-weight: bold;
+}
+
+/* Highlight Elements */
+h1,
+h2 {
+  border-bottom: 2px solid var(--color-primary-500);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+p strong,
+h1 strong,
+h2 strong {
+  color: var(--color-primary-700);
+}
+
+/* Cards and Counts */
+#cards_span,
+#orders_span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+#number_of_user_added_to_cards,
+#number_of_orders {
+  background-color: #0056b3;
+  color: var(--color-primary-contrast);
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Header */
+#main_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-primary-gradient);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-medium);
+  margin: var(--space-4) auto;
+  transition: all 0.3s ease;
+}
+
+#main_header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+#main_header nav ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+#main_header nav ul li {
+  padding: 0 var(--space-2);
+}
+
+#main_header a {
+  text-decoration: none;
+  color: var(--color-primary-contrast);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-small);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#main_header a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+#mobile_header {
+  display: none;
+}
+/* Mobile Header */
+@media (max-width: 550px) {
+  body {
+    width: 90%;
+  }
+
+  #main_header {
+    display: none;
+  }
+
+  #mobile_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4);
+    background: var(--color-primary-gradient);
+    border-radius: var(--border-radius-medium);
+  }
+
+  #mobile_header nav ul {
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+
+  #mobile_header nav ul li {
+    padding: var(--space-2) 0;
+  }
+}
+#logout {
+  color: white;
+  background-color: #007bff;
+  border-radius: 6px;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}

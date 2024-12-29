@@ -1,0 +1,274 @@
+body main h2 {
+  margin: 2rem 0 1rem;
+  text-align: center;
+  color: #343a40;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+p,
+span {
+  color: #495057;
+}
+
+.form {
+  margin: auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+  width: 30%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#buy_form {
+  margin: auto;
+  background-color: #d1d1d1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  align-items: center;
+  width: 30%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  background-color: #f8f9fa;
+  color: #495057;
+  display: inline-block;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  height: 2.5rem;
+  padding: 0.5rem;
+  width: 6rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+#items_ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 1.5rem auto;
+  padding: 0;
+  max-width: 100%;
+  list-style: none;
+}
+
+.list_each_product {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.q_u_d {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+#All {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 2rem;
+  color: #343a40;
+}
+
+.quantity_input {
+  width: 4rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  text-align: center;
+  font-size: 1rem;
+  color: #495057;
+}
+
+.info {
+  text-align: left;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.info p {
+  font-size: 1rem;
+  color: #343a40;
+  line-height: 1.5;
+}
+
+.title {
+  margin: 1rem 0 0.5rem;
+  padding: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: left;
+  color: #495057;
+}
+
+.restaurant_total {
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #343a40;
+  margin: 0;
+  text-align: left;
+}
+
+.btn {
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 8px;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+.update_quantity_button {
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 8px;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.update_quantity_button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.delete_product_button {
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 8px;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.delete_product_button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.list_each_product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.list_each_product p {
+  color: #495057;
+  font-size: 1rem;
+}
+
+.list_each_product div img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+#total_buy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.total {
+  margin: 0;
+  color: #495057;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+#buy_div {
+  margin-top: 1rem;
+}
+
+#must_login {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#must_login:hover {
+  color: #0056b3;
+}
+
+#no_prod_p {
+  color: #868e96;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+#food_detail {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+#food_detail img {
+  height: 6rem;
+  width: 6rem;
+  margin: 0;
+  border-radius: 8px;
+}
+
+#res_title {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#res_title img {
+  height: 8rem;
+  width: 8rem;
+  margin-top: 0;
+  margin-bottom: -0.5rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#res_title h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0.5rem;
+}

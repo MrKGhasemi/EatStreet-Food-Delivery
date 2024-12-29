@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs',{title:'restaurants'})%>
+    <link rel="stylesheet" href="/styles/manage_products.css">
+    <meta name="description" content="Hi, main page">
+    </head>
+
+    <body>
+        <%-include( '../includes/header.ejs' )%>
+            <main>
+                <%if(restaurants){%>
+                    <section class="product_show">
+                        <ul>
+                            <% for (restaurant of restaurants) { %>
+                                <li class="product_item">
+                                    <img src="<%= restaurant.image_path %>" id="image" alt="product">
+                                    <div class="product_content">
+                                        <p class="product_title">
+                                            <%= restaurant.name %>
+                                        </p>
+                                        <p class="product_rate">User Rating: <%= restaurant.average_rating %></p>
+                                        <div class="product_buttons">
+                                            <form action="/restaurants/<%=restaurant._id%>/detail" method="get">
+                                                <input type="hidden" value=<%=locals.csrfToken%> name="_csrf">
+                                                <button class="product_edit">View Detail</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </section>
+                    <%}%>
+            </main>
+    </body>
+
+    </html>
