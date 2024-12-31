@@ -23,19 +23,19 @@
 
 ## Project Structure
 
-- **controllers**:         *Contains logic for handling `routes`
+- **/controllers**:         *Contains logic for handling `routes`
   
-- **data**:                *`MongoDB` database configuration.*
+- **/data**:                *`MongoDB` database configuration.*
   
-- **middlewares**:         *Middleware for authentication, `CSRF`, etc.*
+- **/middlewares**:         *Middleware for authentication, `CSRF`, etc.*
   
-- **public**:             *Static files like `CSS` and images.*
+- **/public**:             *Static files like `CSS` and images.*
   
-- **routes**:             *`Application routing` (user, admin, auth).*
+- **/routes**:             *`Application routing` (user, admin, auth).*
   
-- **session**:            *`Session` configuration.*
+- **/session**:            *`Session` configuration.*
   
-- **views**:             *`EJS` templates for rendering pages.*
+- **/views**:             *`EJS` templates for rendering pages.*
   
 ## Installation
 
