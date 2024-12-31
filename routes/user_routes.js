@@ -22,7 +22,7 @@ router.post(
 
 router.post("/account/:id/address", user_controllers.postAccountAddressChange);
 
-router.post(
+router.get(
   "/restaurants/:id/detail",
   user_controllers.getRestaurantDetailPage
 );
