@@ -25,6 +25,7 @@
                             <% if (order.State === 'delivered') { %>
                                 <li class="list_each_product">
                                     <p>Order ID: <%= order._id %></p>
+                                    <p>Restaurant: <%= order.restaurantName %></p>
                                     <time><%= order.toseeDate %></time>
                                     <address>Deliver To: <%= order.customer_address.street %>, <%= order.customer_address.city %>, <%= order.customer_address.postal_code %></address>
                                     <div id="products_image_price">
@@ -81,6 +82,7 @@
                             <% if (order.State === 'pending'|| order.State === 'delivering') { %>
                                 <li class="list_each_product">
                                     <p>Order ID: <%= order._id %></p>
+                                    <p>Restaurant: <%= order.restaurantName %></p>
                                     <time><%= order.toseeDate %></time>
                                     <address>Deliver To: <%= order.customer_address.street %>, <%= order.customer_address.city %>, <%= order.customer_address.postal_code %></address>
                                     <p class="timer" data-end-time="<%= new Date(new Date(order.date).getTime() + order.estimated_delivery_time * 60 * 1000).getTime() %>">
@@ -121,6 +123,7 @@
                             <% if (order.State === 'canceled') { %>
                                 <li class="list_each_product">
                                     <p>Order ID: <%= order._id %></p>
+                                    <p>Restaurant: <%= order.restaurantName %></p>
                                     <time><%= order.toseeDate %></time>
                                     <address>Deliver To: <%= order.customer_address.street %>, <%= order.customer_address.city %>, <%= order.customer_address.postal_code %></address>
                                     <div id="products_image_price">
