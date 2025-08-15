@@ -57,7 +57,7 @@
   ```bash
   npm start
   ```
-### Usage:
+## Usage:
 - Navigate to `http://localhost:5000` to access the application.
   
 - Users can browse restaurants, manage their cart, place orders, and leave reviews.
