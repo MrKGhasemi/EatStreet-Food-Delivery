@@ -63,11 +63,6 @@
 - Users can browse restaurants, manage their cart, place orders, and leave reviews.
   
 - Admins can access restricted routes for administrative tasks.
-
-## Technologies Used
-- **Backend**: `Node.js`, `Express.js`
-  
-- **Database**: `MongoDB`
   
 - **Frontend**: `EJS` (Embedded JavaScript templates)
   
