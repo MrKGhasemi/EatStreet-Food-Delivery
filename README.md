@@ -19,6 +19,9 @@
   
 - **Admin Panel**: Restricted area for `admins` to manage the system.
   
+- **Frontend**: `EJS`
+  
+- **Authentication**: `Sessions`, `bcrypt`, `CSRF protection`
 
 
 ## Project Structure
@@ -63,8 +66,4 @@
 - Users can browse restaurants, manage their cart, place orders, and leave reviews.
   
 - Admins can access restricted routes for administrative tasks.
-  
-- **Frontend**: `EJS` (Embedded JavaScript templates)
-  
-- **Authentication**: `Sessions`, `bcrypt`, `CSRF protection`
 
